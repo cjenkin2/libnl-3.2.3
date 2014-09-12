@@ -7,7 +7,7 @@ AM_CPPFLAGS  =			 	\
 	-I${builddir}/route \
 	-I${builddir}/route/cls \
 	-D_GNU_SOURCE \
-	-DSYSCONFDIR=\"$(sysconfdir)/libnl\"
+	-DSYSCONFDIR=\"$(sysconfdir)/libnl-3\"
 
 AM_LDFLAGS = \
 	-version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE)
@@ -39,15 +39,19 @@ CLEANFILES = \
 # Hack to avoid using ylwrap. It does not function correctly in combination
 # with --header-file=
 route/pktloc_grammar.c: route/pktloc_grammar.l
+	$(AM_V_GEN) install -d route/
 	$(AM_V_GEN) $(LEX) --header-file=route/pktloc_grammar.h $(LFLAGS) -o $@ $^
 
 route/pktloc_syntax.c: route/pktloc_syntax.y
+	$(AM_V_GEN) install -d route/
 	$(AM_V_GEN) $(YACC) -d $(YFLAGS) -o $@ $^
 
 route/cls/ematch_grammar.c: route/cls/ematch_grammar.l
+	$(AM_V_GEN) install -d route/cls/
 	$(AM_V_GEN) $(LEX) --header-file=route/cls/ematch_grammar.h $(LFLAGS) -o $@ $^
 
 route/cls/ematch_syntax.c: route/cls/ematch_syntax.y
+	$(AM_V_GEN) install -d route/cls/
 	$(AM_V_GEN) $(YACC) -d $(YFLAGS) -o $@ $^
 
 libnl_route_3_la_LIBADD  = libnl-3.la

@@ -79,16 +79,16 @@ EXTRA_DIST = \
 	images/icons/callouts/15.png
 
 %.html: %.txt
-	./resolve-asciidoc-refs.py $< > asciidoc.tmp
+	../../../../doc/resolve-asciidoc-refs.py $< > asciidoc.tmp
 	asciidoc $(ASCIIDOCOPTS) -o $@ asciidoc.tmp
-	./doxygen-link.py libnl.dict $@ > asciidoc.tmp
+	../../../../doc/doxygen-link.py libnl.dict $@ > asciidoc.tmp
 	mv asciidoc.tmp $@
 
 asciidoc: core.html route.html index.html
 
 api_ref:
 	doxygen Doxyfile;
-	./gen-tags.sh | ./tags2dict.sh > libnl.dict
+	../../../../doc/gen-tags.sh | ../../../../doc/tags2dict.sh > libnl.dict
 
 gendoc:
 	$(MAKE) api_ref

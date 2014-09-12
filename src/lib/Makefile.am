@@ -1,6 +1,6 @@
 # -*- Makefile -*-
 
-AM_CPPFLAGS  = -Wall -I${top_srcdir}/include -I${top_builddir}/include -D_GNU_SOURCE -DPKGLIBDIR=\"$(pkglibdir)\" -DSYSCONFDIR=\"$(sysconfdir)\" -rdynamic
+AM_CPPFLAGS  = -Wall -I${top_srcdir}/include -I${top_builddir}/include -D_GNU_SOURCE -DPKGLIBDIR=\"$(pkglibdir)-3\" -DSYSCONFDIR=\"$(sysconfdir)\" -rdynamic
 AM_LDFLAGS = \
 	-L${top_builddir}/lib \
 	-ldl \
